@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>快速排序 - ChatGPT</title>
+</head>
+<body>
+  <main>
+    <article data-testid="conversation-turn-1">
+      <div data-message-author-role="user" data-message-id="msg-u1">
+        <div class="whitespace-pre-wrap">你好，请用**加粗**和代码解释快速排序，并给出 Python 示例。</div>
+      </div>
+    </article>
+
+    <article data-testid="conversation-turn-2">
+      <div data-message-author-role="assistant" data-message-id="msg-a1">
+        <div class="markdown prose">
+          <p>快速排序是一种<strong>分治</strong>算法，平均时间复杂度为 <code>O(n log n)</code>。</p>
+          <h2>基本步骤</h2>
+          <ol>
+            <li><p>从数列中选择一个基准值（pivot）。</p></li>
+            <li><p>把小于基准的元素放到左边，大于基准的元素放到右边。</p></li>
+            <li><p>递归处理左右两个子序列。</p></li>
+          </ol>
+          <h3>Python 示例</h3>
+          <pre><code class="language-python">def quick_sort(arr):
+    if len(arr) &lt;= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x &lt; pivot]
+    right = [x for x in arr if x &gt; pivot]
+    return quick_sort(left) + [pivot] + quick_sort(right)</code></pre>
+          <blockquote>
+            <p>提示：基准的选择会影响最坏情况的时间复杂度。</p>
+          </blockquote>
+        </div>
+      </div>
+    </article>
+
+    <article data-testid="conversation-turn-3">
+      <div data-message-author-role="user" data-message-id="msg-u2">
+        <div class="whitespace-pre-wrap">最坏情况是什么？</div>
+      </div>
+    </article>
+
+    <article data-testid="conversation-turn-4">
+      <div data-message-author-role="assistant" data-message-id="msg-a2">
+        <div class="markdown prose">
+          <p>最坏情况是每次划分都极不均衡，复杂度退化为 <strong>O(n²)</strong>。</p>
+          <ul>
+            <li>数组已经有序，且总选第一个或最后一个元素作为基准。</li>
+            <li>所有元素都相等时也可能退化。</li>
+          </ul>
+          <p>解决办法：随机选择基准，或使用三数取中法。</p>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

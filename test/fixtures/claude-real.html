@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>真实 DOM 结构 - Claude</title>
+</head>
+<body>
+  <main>
+    <div data-testid="user-message">
+      <p>请解释 Linux 中的软链接和硬链接。</p>
+    </div>
+
+    <div class="font-claude-response">
+      <div class="standard-markdown">
+        <p>硬链接和软链接的核心区别在于<strong>是否指向同一个 inode</strong>。</p>
+        <h2>对比</h2>
+        <table>
+          <thead><tr><th>特性</th><th>硬链接</th><th>软链接</th></tr></thead>
+          <tbody>
+            <tr><td>inode</td><td>相同</td><td>不同</td></tr>
+            <tr><td>跨文件系统</td><td>不可以</td><td>可以</td></tr>
+          </tbody>
+        </table>
+        <div class="relative group/copy">
+          <div class="text-text-500 font-small p-3.5 pb-0">bash</div>
+          <div>
+            <pre class="code-block__code"><code class="language-bash">ln source hardlink
+ln -s source softlink</code></pre>
+          </div>
+          <button aria-label="Copy to clipboard">复制</button>
+        </div>
+      </div>
+    </div>
+
+    <div data-testid="user-message">
+      <p>删除源文件后呢？</p>
+    </div>
+
+    <div class="font-claude-response">
+      <div class="standard-markdown">
+        <p>删除源文件后，硬链接仍然可以访问数据；软链接会变成悬空链接。</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

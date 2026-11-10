@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>真实 DOM 结构 - ChatGPT</title>
+</head>
+<body>
+  <main>
+    <!-- 隐藏的旧会话，必须被过滤 -->
+    <section data-testid="conversation-turn-0" data-turn="user" style="display:none">
+      <div data-message-author-role="user" data-message-id="hidden-0">
+        <div class="whitespace-pre-wrap">这条隐藏的旧消息不应被导出</div>
+      </div>
+    </section>
+
+    <section data-testid="conversation-turn-1" data-turn="user" data-turn-id="turn-u1">
+      <h4 class="sr-only select-none">You said:</h4>
+      <div>
+        <div data-message-author-role="user" data-message-id="msg-u1">
+          <div class="user-message-bubble-color">
+            <div class="whitespace-pre-wrap">请解释装饰器，并给出 Python 示例。</div>
+          </div>
+        </div>
+      </div>
+      <div aria-label="Your message actions"><button aria-label="Copy">复制</button></div>
+    </section>
+
+    <section data-testid="conversation-turn-2" data-turn="assistant" data-turn-id="turn-a1">
+      <h4 class="sr-only select-none">ChatGPT said:</h4>
+      <div>
+        <div data-message-author-role="assistant" data-message-id="msg-a1a">
+          <div class="markdown prose">
+            <p>先说明：装饰器本质上是一个<strong>高阶函数</strong>。</p>
+          </div>
+        </div>
+        <div data-message-author-role="assistant" data-message-id="msg-a1b">
+          <div class="markdown prose">
+            <p>它接收一个函数并返回一个新函数。</p>
+            <pre class="overflow-x-auto">
+              <div class="flex items-center justify-between">
+                <div class="flex min-w-0 items-center"><span class="text-token-text-primary">Python</span></div>
+                <div><button aria-label="Copy">Copy</button><button aria-label="Run code">Run</button></div>
+              </div>
+              <div class="cm-editor">
+                <div class="cm-content">
+                  <div class="cm-line">def timer(func):</div>
+                  <div class="cm-line">    def wrapper(*args, **kwargs):</div>
+                  <div class="cm-line">        return func(*args, **kwargs)</div>
+                  <div class="cm-line">    return wrapper</div>
+                </div>
+              </div>
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div aria-label="Response actions"><button aria-label="Copy">复制</button></div>
+    </section>
+
+    <section data-testid="conversation-turn-3" data-turn="user" data-turn-id="turn-u2">
+      <div data-message-author-role="user" data-message-id="msg-u2">
+        <div class="whitespace-pre-wrap">它会影响函数签名吗？</div>
+      </div>
+    </section>
+
+    <section data-testid="conversation-turn-4" data-turn="assistant" data-turn-id="turn-a2">
+      <div data-message-author-role="assistant" data-message-id="msg-a2">
+        <div class="markdown prose">
+          <p>会。建议使用 <code>functools.wraps</code> 保留原函数的元数据。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

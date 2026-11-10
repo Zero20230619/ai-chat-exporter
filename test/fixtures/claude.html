@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>二叉树遍历 - Claude</title>
+</head>
+<body>
+  <main>
+    <div data-testid="user-message">
+      <p>请解释二叉树的前序、中序和后序遍历，并给出 JavaScript 代码。</p>
+    </div>
+
+    <div class="font-claude-message">
+      <div class="markdown">
+        <p>二叉树遍历是按某种顺序访问每个节点。三种深度优先遍历的区别在于<strong>访问根节点的时机</strong>。</p>
+        <h2>遍历顺序</h2>
+        <ul>
+          <li><strong>前序</strong>：根 → 左 → 右</li>
+          <li><strong>中序</strong>：左 → 根 → 右</li>
+          <li><strong>后序</strong>：左 → 右 → 根</li>
+        </ul>
+        <pre><code class="language-javascript">function preorder(node, out = []) {
+  if (!node) return out;
+  out.push(node.val);
+  preorder(node.left, out);
+  preorder(node.right, out);
+  return out;
+}</code></pre>
+        <p>中序遍历二叉搜索树可以得到<em>升序序列</em>。</p>
+      </div>
+    </div>
+
+    <div data-testid="user-message">
+      <p>递归写法会不会栈溢出？</p>
+    </div>
+
+    <div class="font-claude-message">
+      <div class="markdown">
+        <p>会。递归深度等于树高，极端情况下（退化成链表）为 <code>O(n)</code>。</p>
+        <p>可以用显式栈改写为迭代实现：</p>
+        <pre><code class="language-javascript">function inorder(root) {
+  const stack = [], out = [];
+  let cur = root;
+  while (cur || stack.length) {
+    while (cur) { stack.push(cur); cur = cur.left; }
+    cur = stack.pop();
+    out.push(cur.val);
+    cur = cur.right;
+  }
+  return out;
+}</code></pre>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

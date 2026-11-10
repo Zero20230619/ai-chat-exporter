@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>通用站点测试 - SomeAI</title>
+</head>
+<body>
+  <main>
+    <div data-role="user">
+      <p>请解释什么是死锁，并给出四个必要条件。</p>
+    </div>
+    <div data-role="assistant">
+      <div class="markdown">
+        <p>死锁是指两个或多个进程因争夺资源而<strong>互相等待</strong>，导致都无法继续执行。</p>
+        <h2>四个必要条件</h2>
+        <ul>
+          <li>互斥条件</li>
+          <li>请求与保持条件</li>
+          <li>不可剥夺条件</li>
+          <li>循环等待条件</li>
+        </ul>
+      </div>
+    </div>
+    <div data-role="user">
+      <p>如何预防死锁？</p>
+    </div>
+    <div data-role="assistant">
+      <div class="markdown">
+        <p>破坏任意一个必要条件即可，例如<em>资源有序分配</em>可以破坏循环等待。</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

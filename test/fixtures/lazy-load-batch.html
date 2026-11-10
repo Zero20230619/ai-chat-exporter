@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>多批向上懒加载 - SomeAI</title>
+  <style>
+    #scroll { height: 320px; overflow-y: auto; border: 1px solid #ddd; }
+    #list > div { min-height: 60px; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="scroll">
+    <div id="list"></div>
+  </div>
+
+  <script>
+    (function () {
+      var list = document.getElementById('list');
+      var scroll = document.getElementById('scroll');
+
+      function makeMessage(i) {
+        var div = document.createElement('div');
+        div.setAttribute('data-role', i % 2 === 1 ? 'user' : 'assistant');
+        div.style.minHeight = '60px';
+        if (i % 2 === 1) {
+          div.textContent = '用户消息 ' + i;
+        } else {
+          var md = document.createElement('div');
+          md.className = 'markdown';
+          md.textContent = '助手回答 ' + i;
+          div.appendChild(md);
+        }
+        return div;
+      }
+
+      function prepend(start, end) {
+        var frag = document.createDocumentFragment();
+        for (var j = start; j <= end; j++) frag.appendChild(makeMessage(j));
+        list.insertBefore(frag, list.firstChild);
+        scroll.scrollTop = 0;
+      }
+
+      // 初始只渲染后 20 条（21-40）
+      for (var i = 21; i <= 40; i++) list.appendChild(makeMessage(i));
+      scroll.scrollTop = scroll.scrollHeight;
+
+      var started = false;
+      function startLazyLoad() {
+        if (started) return;
+        started = true;
+        // 两批，间隔 650ms，模拟真实站点分批加载更早消息
+        setTimeout(function () { prepend(11, 20); }, 650);
+        setTimeout(function () { prepend(1, 10); }, 1300);
+      }
+
+      scroll.addEventListener('scroll', function () {
+        if (scroll.scrollTop <= 0) startLazyLoad();
+      });
+      // 无头 dump-dom 环境不一定会派发 scroll 事件
+      setInterval(function () {
+        if (scroll.scrollTop <= 0) startLazyLoad();
+      }, 30);
+    })();
+  </script>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

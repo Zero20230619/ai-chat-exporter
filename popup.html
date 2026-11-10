@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 对话导出</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="logo" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M5 4.8A2.8 2.8 0 0 1 7.8 2h8.4A2.8 2.8 0 0 1 19 4.8v9.4a2.8 2.8 0 0 1-2.8 2.8H7.8A2.8 2.8 0 0 1 5 14.2V4.8Z" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M8.2 7h7.6M8.2 10h5.4M12 16.8V22m0 0 3-2.4M12 22l-3-2.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>AI 对话导出</h1>
+      <p>把整段对话保存为清晰的 Markdown</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="status-card" id="statusCard">
+      <div class="status-line">
+        <span class="status-dot" id="statusDot"></span>
+        <span class="status-title" id="statusTitle">正在识别当前页面…</span>
+      </div>
+      <div class="status-detail" id="statusDetail">请稍候</div>
+      <div class="status-count" id="statusCount" hidden></div>
+    </section>
+
+    <div class="options">
+      <label class="check">
+        <input type="checkbox" id="includeHeader" checked>
+        <span>包含标题、来源与导出时间</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="floatingButton" checked>
+        <span>在页面上显示悬浮导出按钮</span>
+      </label>
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" id="exportBtn">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>导出 Markdown 文件</span>
+      </button>
+      <button class="btn secondary" id="copyBtn">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h2" stroke="currentColor" stroke-width="1.7"/></svg>
+        <span>复制 Markdown</span>
+      </button>
+    </div>
+
+    <details class="preview" id="previewBox" hidden>
+      <summary>导出结果预览</summary>
+      <pre id="preview"></pre>
+    </details>
+
+    <p class="tip" id="tip">支持 DeepSeek、ChatGPT、Claude、Gemini 等。打开一段对话后点击上方按钮即可导出。</p>
+    <p class="tip muted">全部处理都在本地完成，不会上传任何对话内容。</p>
+  </main>
+
+  <footer>
+    <span>v1.0.0</span>
+    <span>Markdown · UTF-8</span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

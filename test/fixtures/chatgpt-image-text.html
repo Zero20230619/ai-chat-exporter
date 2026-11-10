@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>文本加图片 - ChatGPT</title>
+</head>
+<body>
+  <main>
+    <section data-testid="conversation-turn-1" data-turn="user">
+      <div data-message-author-role="user" data-message-id="u-img">
+        <div class="whitespace-pre-wrap">请看这张截图，帮我分析一下。</div>
+      </div>
+      <!-- 真实 ChatGPT 中图片/附件可能挂在消息节点外层，甚至没有包装 div -->
+      <img src="https://example.com/shot.png" alt="截图.png" width="800" height="600">
+    </section>
+    <section data-testid="conversation-turn-2" data-turn="assistant">
+      <div data-message-author-role="assistant" data-message-id="a-img">
+        <div class="markdown prose"><p>截图里是一个浮点数转换的例子。</p></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

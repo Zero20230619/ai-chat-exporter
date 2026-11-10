@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>用户文本转义 - DeepSeek</title>
+</head>
+<body>
+  <div class="ds-virtual-list-items">
+    <div data-virtual-list-item-key="1">
+      <div class="ds-message">
+        <div class="fbb737a4">
+          <div class="ds-collapsible-text"><div><span>```</span></div></div>
+          <div class="ds-collapsible-text"><div><span>---</span></div></div>
+          <div class="ds-collapsible-text"><div><span># 这不是标题</span></div></div>
+          <div class="ds-collapsible-text"><div><span>&lt;img src=x onerror=alert(1)&gt;</span></div></div>
+        </div>
+      </div>
+    </div>
+    <div data-virtual-list-item-key="2">
+      <div class="ds-message">
+        <div class="ds-assistant-message-main-content ds-markdown">
+          <p>这是 AI 回答，不应该被用户的代码围栏吞掉。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

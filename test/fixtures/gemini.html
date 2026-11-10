@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>TCP 三次握手 - Gemini</title>
+</head>
+<body>
+  <main>
+    <user-query>
+      <div class="query-text">
+        <p>请用表格总结 TCP 三次握手的过程，并说明为什么需要三次。</p>
+      </div>
+    </user-query>
+
+    <model-response>
+      <message-content>
+        <div class="markdown">
+          <p>TCP 三次握手用于建立可靠连接，核心目的是<strong>同步双方的初始序列号</strong>。</p>
+          <table>
+            <thead>
+              <tr><th>步骤</th><th>发送方</th><th>报文</th><th>关键字段</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>客户端</td><td>SYN</td><td>seq=x</td></tr>
+              <tr><td>2</td><td>服务端</td><td>SYN+ACK</td><td>seq=y, ack=x+1</td></tr>
+              <tr><td>3</td><td>客户端</td><td>ACK</td><td>ack=y+1</td></tr>
+            </tbody>
+          </table>
+          <h2>为什么需要三次</h2>
+          <ol>
+            <li>防止历史重复连接请求突然到达，浪费服务端资源。</li>
+            <li>让双方都确认对方的发送和接收能力正常。</li>
+            <li>同步双方的初始序列号，保证数据按序可靠传输。</li>
+          </ol>
+        </div>
+      </message-content>
+    </model-response>
+
+    <user-query>
+      <div class="query-text">如果第三次握手丢失会怎样？</div>
+    </user-query>
+
+    <model-response>
+      <message-content>
+        <div class="markdown">
+          <p>客户端认为连接已建立，但服务端仍处于 <code>SYN_RECV</code> 状态。</p>
+          <p>服务端会超时重传 <code>SYN+ACK</code>；若多次重传失败，则关闭该半连接。客户端此时发送的数据可能被服务端丢弃或触发 RST。</p>
+        </div>
+      </message-content>
+    </model-response>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

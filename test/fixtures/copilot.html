@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Copilot 结构 - Copilot</title>
+</head>
+<body>
+  <main>
+    <div class="group/user-message">
+      <div data-content="user-message">请总结一下栈和队列的区别。</div>
+    </div>
+    <div class="group/ai-message">
+      <div class="group/ai-message-item">
+        <div class="markdown"><p>栈是后进先出，队列是先进先出。</p></div>
+      </div>
+    </div>
+    <div class="group/user-message">
+      <div data-content="user-message">各自的应用场景呢？</div>
+    </div>
+    <div class="group/ai-message">
+      <div class="group/ai-message-item">
+        <div class="markdown"><p>栈用于递归、括号匹配；队列用于 BFS、任务调度。</p></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

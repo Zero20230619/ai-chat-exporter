@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>用户 HTML 路径转义 - Claude</title>
+</head>
+<body>
+  <main>
+    <div data-testid="user-message">
+      <p>```</p>
+      <p>---</p>
+      <p>第一行<br>第二行</p>
+    </div>
+    <div class="font-claude-response">
+      <div class="standard-markdown">
+        <p>这是 Claude 的回答，不应被用户的代码围栏吞掉。</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

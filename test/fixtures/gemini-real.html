@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>真实 DOM 结构 - Gemini</title>
+</head>
+<body>
+  <chat-window>
+    <div class="content-container">
+      <div class="chat-container">
+        <div class="main-content">
+          <chat-window-content>
+            <div id="chat-history" class="chat-history-scroll-container">
+              <infinite-scroller class="chat-history">
+                <div class="conversation-container" id="turn-1">
+                  <user-query>
+                    <span class="user-query-container right-align-content">
+                      <user-query-content class="user-query-container">
+                        <div class="query-content">
+                          <span class="user-query-bubble-with-background">
+                            <div class="query-text" role="heading" aria-level="2">
+                              <p class="query-text-line">请解释数据库的脏读和不可重复读。</p>
+                            </div>
+                          </span>
+                        </div>
+                      </user-query-content>
+                    </span>
+                  </user-query>
+                  <model-response>
+                    <div>
+                      <response-container>
+                        <div class="response-container-content">
+                          <message-content class="model-response-text" id="message-content-1">
+                            <div class="markdown markdown-main-panel">
+                              <p>两者都属于并发事务问题，但表现不同。</p>
+                              <ul>
+                                <li><strong>脏读</strong>：读到了另一个事务未提交的数据。</li>
+                                <li><strong>不可重复读</strong>：同一事务内两次读取同一行结果不同。</li>
+                              </ul>
+                              <div class="code-block">
+                                <div class="code-block-decoration"><span>sql</span></div>
+                                <pre><code>SET TRANSACTION ISOLATION LEVEL READ COMMITTED;</code></pre>
+                              </div>
+                            </div>
+                          </message-content>
+                        </div>
+                      </response-container>
+                    </div>
+                  </model-response>
+                </div>
+
+                <div class="conversation-container" id="turn-2">
+                  <user-query>
+                    <div class="query-content"><div class="query-text"><p class="query-text-line">如何避免？</p></div></div>
+                  </user-query>
+                  <model-response>
+                    <message-content class="model-response-text">
+                      <div class="markdown markdown-main-panel">
+                        <p>提高隔离级别，或使用乐观锁/悲观锁。</p>
+                        <table>
+                          <thead><tr><th>隔离级别</th><th>脏读</th><th>不可重复读</th></tr></thead>
+                          <tbody>
+                            <tr><td>READ COMMITTED</td><td>避免</td><td>可能</td></tr>
+                            <tr><td>REPEATABLE READ</td><td>避免</td><td>避免</td></tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </message-content>
+                  </model-response>
+                </div>
+              </infinite-scroller>
+            </div>
+          </chat-window-content>
+        </div>
+      </div>
+    </div>
+  </chat-window>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>流式内容增长 - SomeAI</title>
+  <style>
+    #scroll { height: 300px; overflow-y: auto; border: 1px solid #ddd; }
+    #spacer { height: 2000px; }
+  </style>
+</head>
+<body>
+  <div id="scroll">
+    <div data-role="user"><p>请回答这个问题。</p></div>
+    <div data-role="assistant" id="answer"><div class="markdown">回答第一段</div></div>
+    <div id="spacer"></div>
+  </div>
+
+  <script>
+    setTimeout(function () {
+      document.querySelector('#answer .markdown').textContent = '回答第一段，补充一';
+    }, 300);
+    setTimeout(function () {
+      document.querySelector('#answer .markdown').textContent = '回答第一段，补充一，补充二';
+    }, 700);
+  </script>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

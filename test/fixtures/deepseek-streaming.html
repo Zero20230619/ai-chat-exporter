@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>DeepSeek 流式增长 - DeepSeek</title>
+</head>
+<body>
+  <div class="ds-virtual-list-items">
+    <div data-virtual-list-item-key="1">
+      <div class="ds-message">
+        <div class="fbb737a4"><div class="ds-collapsible-text"><div><span>请回答这个问题。</span></div></div></div>
+      </div>
+    </div>
+    <div data-virtual-list-item-key="2">
+      <div class="ds-message">
+        <div class="ds-assistant-message-main-content ds-markdown" id="stream-answer"><p>回答第一段</p></div>
+      </div>
+    </div>
+  </div>
+  <div style="height: 2000px;"></div>
+
+  <script>
+    setTimeout(function () {
+      document.getElementById('stream-answer').innerHTML = '<p>回答第一段，补充一</p>';
+    }, 300);
+    setTimeout(function () {
+      document.getElementById('stream-answer').innerHTML = '<p>回答第一段，补充一，补充二</p>';
+    }, 700);
+  </script>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

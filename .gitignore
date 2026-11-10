@@ -1,0 +1,19 @@
+# 构建产物
+/dist/
+*.zip
+
+# 测试生成的导出结果（源码与夹具会提交）
+/test/results/
+
+# 调研原始 DOM 转储：体积大且包含第三方/分享页内容，不入库
+/research/samples/
+/research/deepseek-share-rendered.html
+
+# 内部审查报告
+/review/
+
+# 依赖/系统文件
+node_modules/
+.DS_Store
+Thumbs.db
+*.log

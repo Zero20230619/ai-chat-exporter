@@ -1,0 +1,105 @@
+{
+  "manifest_version": 3,
+  "name": "AI 对话导出器 - Markdown",
+  "short_name": "AI 对话导出",
+  "version": "1.0.0",
+  "description": "自动识别 DeepSeek、ChatGPT、Claude、Gemini 等网页里的用户与 AI 对话，一键导出为轮次清晰的 Markdown 文件。",
+  "minimum_chrome_version": "109",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "storage",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://chat.deepseek.com/*",
+    "https://deepseek.com/*",
+    "https://www.deepseek.com/*",
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://copilot.microsoft.com/*",
+    "https://www.copilot.com/*",
+    "https://copilot.com/*",
+    "https://www.kimi.com/*",
+    "https://kimi.com/*",
+    "https://kimi.moonshot.cn/*",
+    "https://moonshot.cn/*",
+    "https://tongyi.aliyun.com/*",
+    "https://www.tongyi.com/*",
+    "https://tongyi.com/*",
+    "https://chat.qwen.ai/*",
+    "https://qwen.ai/*",
+    "https://www.doubao.com/*",
+    "https://doubao.com/*",
+    "https://chatglm.cn/*",
+    "https://chat.z.ai/*",
+    "https://z.ai/*",
+    "https://www.z.ai/*",
+    "https://yuanbao.tencent.com/*",
+    "https://chat.mistral.ai/*",
+    "https://mistral.ai/*",
+    "https://grok.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "导出 AI 对话为 Markdown",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chat.deepseek.com/*",
+        "https://deepseek.com/*",
+        "https://www.deepseek.com/*",
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://copilot.microsoft.com/*",
+        "https://www.copilot.com/*",
+        "https://copilot.com/*",
+        "https://www.kimi.com/*",
+        "https://kimi.com/*",
+        "https://kimi.moonshot.cn/*",
+        "https://moonshot.cn/*",
+        "https://tongyi.aliyun.com/*",
+        "https://www.tongyi.com/*",
+        "https://tongyi.com/*",
+        "https://chat.qwen.ai/*",
+        "https://qwen.ai/*",
+        "https://www.doubao.com/*",
+        "https://doubao.com/*",
+        "https://chatglm.cn/*",
+        "https://chat.z.ai/*",
+        "https://z.ai/*",
+        "https://www.z.ai/*",
+        "https://yuanbao.tencent.com/*",
+        "https://chat.mistral.ai/*",
+        "https://mistral.ai/*",
+        "https://grok.com/*"
+      ],
+      "js": [
+        "src/extractor.js",
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

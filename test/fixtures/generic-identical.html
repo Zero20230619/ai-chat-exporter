@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>重复内容虚拟列表 - SomeAI</title>
+  <style>
+    #scroll { height: 300px; overflow-y: auto; position: relative; border: 1px solid #ddd; }
+    #spacer { position: relative; }
+    #items > div { position: absolute; left: 0; right: 0; height: 60px; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div id="scroll">
+    <div id="spacer" style="height: 1800px;">
+      <div id="items"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var scroll = document.getElementById('scroll');
+      var items = document.getElementById('items');
+      var ITEM_H = 60;
+      var COUNT = 30;
+
+      function render() {
+        var start = Math.max(0, Math.floor(scroll.scrollTop / ITEM_H) - 2);
+        var end = Math.min(COUNT - 1, Math.ceil((scroll.scrollTop + scroll.clientHeight) / ITEM_H) + 2);
+        var html = '';
+        for (var i = start; i <= end; i++) {
+          // 所有消息文本完全相同，用于测试“纯文本对齐”是否会把不同位置误合并
+          html += '<div data-role="' + (i % 2 === 0 ? 'user' : 'assistant') +
+            '" style="top:' + (i * ITEM_H) + 'px">相同内容</div>';
+        }
+        items.innerHTML = html;
+      }
+
+      scroll.addEventListener('scroll', render);
+      render();
+
+      // 无头 dump-dom 环境不一定会派发 scroll 事件，用轮询确保窗口跟随滚动位置
+      var lastTop = scroll.scrollTop;
+      setInterval(function () {
+        if (scroll.scrollTop !== lastTop) {
+          lastTop = scroll.scrollTop;
+          render();
+        }
+      }, 30);
+    })();
+  </script>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>

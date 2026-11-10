@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>隐藏消息过滤 - SomeAI</title>
+</head>
+<body>
+  <main>
+    <div data-role="user"><p>可见用户 1</p></div>
+    <div data-role="assistant"><div class="markdown"><p>可见回答 1</p></div></div>
+    <div data-role="user" style="display:none"><p>隐藏用户 A</p></div>
+    <div data-role="assistant" style="display:none"><div class="markdown"><p>隐藏回答 A</p></div></div>
+    <div data-role="user" style="display:none"><p>隐藏用户 B</p></div>
+  </main>
+
+  <script src="../../src/extractor.js"></script>
+  <script src="harness.js"></script>
+</body>
+</html>
