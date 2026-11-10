@@ -28,7 +28,7 @@
 
 ## 安装（Edge）
 
-1. 下载并解压 `dist/ai-chat-exporter-edge-v1.0.0.zip`。
+1. 下载并解压 `release/ai-chat-exporter-edge-v1.0.0.zip`（也可以在 GitHub Releases 页面下载）。
 2. 在 Edge 地址栏打开 `edge://extensions`。
 3. 打开左下角的「开发人员模式」。
 4. 点击「加载解压缩的扩展」，选择解压后**包含 `manifest.json` 的那个文件夹**（`ai-chat-exporter`）。
